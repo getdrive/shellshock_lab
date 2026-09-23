@@ -155,6 +155,7 @@ def generate_hosts(host_str):
 
 results_buffer = []
 results_lock = Lock()
+_written_results = set()
 
 UNIQUE_MARKER = "64654646464564654654-_VULNERABLE!"
 CONTROL_MARKER = "73195317319531731953-_CONTROL_OK!"
@@ -287,11 +288,14 @@ def check_response(host, port, headers, timeout=timeout, lock=None, scanned_host
         if hit_url:
             message = f"Vulnerability found on {hit_url}{Fore.RED}[VULNERABLE]\n"
             print(Fore.RED + message, end='', flush=True)
+            key = f"{host}:{port}"
             try:
                 with results_lock:
-                    results_buffer.append(f"{host}:{port}\n")
+                    if key in _written_results:
+                        return
+                    _written_results.add(key)
                     with open(file_results, "a") as f:
-                        f.write(f"{host}:{port}\n")
+                        f.write(key + "\n")
             except Exception as e:
                 print(f"{Fore.YELLOW}Error writing result immediately: {e}")
             if vuln_count is not None:
