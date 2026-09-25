@@ -67,7 +67,7 @@ python3 shellshock_exploit.py
 | Команда | Действие |
 |---|---|
 | `help`, `?` | Список команд |
-| `exit`, `quit`, `q` | Выход |
+| `exit`, `quit` | Выход |
 | `! <cmd>` | Команда локально на атакующем |
 | `download <remote> [local]` | Скачать файл с цели |
 | `upload <local> [remote]` | Загрузить файл на цель |
@@ -169,7 +169,7 @@ Built-in commands:
 | Command | Action |
 |---|---|
 | `help`, `?` | List commands |
-| `exit`, `quit`, `q` | Exit |
+| `exit`, `quit` | Exit |
 | `! <cmd>` | Run command locally on the attacker |
 | `download <remote> [local]` | Download a file from the target |
 | `upload <local> [remote]` | Upload a file to the target |
